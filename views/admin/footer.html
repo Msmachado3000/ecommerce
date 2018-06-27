@@ -5,7 +5,7 @@
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2016 <a href="#">Company</a>.</strong> All rights reserved.
+    <strong>Copyright &copy; 2018-2018 <b><a href="http://updatehost.pt" class="text-black">UpdateHost</a>.</strong> All rights reserved.
   </footer>
 
   <!-- Control Sidebar -->
