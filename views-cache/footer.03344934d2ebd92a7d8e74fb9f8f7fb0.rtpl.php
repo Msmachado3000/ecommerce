@@ -4,8 +4,8 @@
             <div class="row">
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
-                        <h2>Hcode Store</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
+                        <h2>Loja Update HOST</h2>
+                        <p>Temos como <br>Missão: lakjslsfdjlassf  <br>Valores: oiuha8979aisdfiuyoasijd  e <br>Visão: çlkajsçlkdjfçaijslckçlk  </p>
                         <div class="footer-social">
                             <a href="https://www.facebook.com/hcodebr" target="_blank"><i class="fa fa-facebook"></i></a>
                             <a href="https://twitter.com/hcodebr" target="_blank"><i class="fa fa-twitter"></i></a>
@@ -29,11 +29,7 @@
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Categorias</h2>
                         <ul>
-                            <li><a href="#">Categoria Um</a></li>
-                            <li><a href="#">Categoria Dois</a></li>
-                            <li><a href="#">Categoria Três</a></li>
-                            <li><a href="#">Categoria Quarto</a></li>
-                            <li><a href="#">Categoria Cinco</a></li>
+                            <?php require $this->checkTemplate("categories-menu");?>
                         </ul>                        
                     </div>
                 </div>
@@ -41,7 +37,7 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-newsletter">
                         <h2 class="footer-wid-title">Newsletter</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus!</p>
+                        <p>Temos produtos para hospedagem de sites, tanto para o usuário final quanto para quem queira ser hospedeiro, assim fornecemos servidor com o espaço que voce precisar, com possibilidades infinitas de hospedar diferentes dominios, servidores com SSD para que voce tenha um acesso extremamente rápido, e ainda voce poderá ser nosso revendedor e faturar comissão da venda enquando o seu cliente estiver usando nossos serviços!!!</p>
                         <div class="newsletter-form">
                             <form action="#">
                                 <input type="email" placeholder="Type your email">
