@@ -1,1 +1,1 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><li><a href="/category/1">Servidor</a></li>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><li><a href="/category/3">Hospedagem Revenda</a></li><li><a href="/category/2">Hospedagem Site</a></li><li><a href="/category/1">Servidor</a></li>
