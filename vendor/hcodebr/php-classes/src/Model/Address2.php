@@ -16,7 +16,7 @@ class Address extends Model {
 
 		$ch = curl_init();
 
-		curl_setopt($ch, CURLOPT_URL, "http://viacep.com.br/ws/$nrcep/json/");
+		curl_setopt($ch, CURLOPT_URL, "https://viacep.com.br/ws/$nrcep/json/");
 
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -53,7 +53,7 @@ class Address extends Model {
 
 		$sql = new Sql();
 
-		$results = $sql->select("CALL sp_addresses_save(:idaddress, :idperson, :desaddress, :descomplement, :descity, :desstate, :descountry, :deszipcode, :desdistrict)", [
+		$results = $sql->select("CALL sp_addresses_save(:idaddress, :idperson, :desaddress, :descomplement, :descity, :desstate, :descountry, :deszipcode, :desdistrict",[
 			':idaddress'=>$this->getidaddress(),
 			':idperson'=>$this->getidperson(),
 			':desaddress'=>utf8_decode($this->getdesaddress()),
@@ -65,10 +65,10 @@ class Address extends Model {
 			':desdistrict'=>$this->getdesdistrict()
 		]);
 
-		if (count($results) > 0) {
+		if (isset($results) > 0){
 			$this->setData($results[0]);
 		}
-
+		
 	}
 
 	public static function setMsgError($msg)
@@ -96,6 +96,6 @@ class Address extends Model {
 
 	}
 
-}
+} // Fim da Classe
 
  ?>
