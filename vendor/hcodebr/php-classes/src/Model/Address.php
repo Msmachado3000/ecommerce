@@ -62,18 +62,18 @@ class Address extends Model {
 			$deszipcode=$this->getdeszipcode();
 			$desdistrict=$this->getdesdistrict();
 			
-			echo "CALL sp_addresses_save(". $idaddress . ',' . $idperson . ',"' . $desaddress . '","' . $descomplement . '","' . $descity . '","' . $desstate . '","' . $descountry . '","' . $deszipcode . '","' . $desdistrict . '")';exit;
+			//echo "CALL sp_addresses_save(". $idaddress . ',' . $idperson . ',"' . $desaddress . '","' . $descomplement . '","' . $descity . '","' . $desstate . '","' . $descountry . '","' . $deszipcode . '","' . $desdistrict . '")';exit;
 
-		$results = $sql->select("CALL sp_addresses_save(". $idaddress . ',' . $idperson . ',"' . $desaddress . '","' . $descomplement . '","' . $descity . '","' . $desstate . '","' . $descountry . '","' . $deszipcode . '","' . $desdistrict . '")');exit;
+		//$results = $sql->select("CALL sp_addresses_save(". $idaddress . ',' . $idperson . ',"' . $desaddress . '","' . $descomplement . '","' . $descity . '","' . $desstate . '","' . $descountry . '","' . $deszipcode . '","' . $desdistrict . '")');exit;
 
 		$results = $sql->select("CALL sp_addresses_save(:idaddress, :idperson, :desaddress, :descomplement, :descity, :desstate, :descountry, :deszipcode, :desdistrict);", [
 			':idaddress'=> $idaddress,
 			':idperson'=>$this->getidperson(),
-			':desaddress'=>utf8_decode($this->getdesaddress()),
-			':descomplement'=>utf8_decode($this->getdescomplement()),
-			':descity'=>utf8_decode($this->getdescity()),
-			':desstate'=>utf8_decode($this->getdesstate()),
-			':descountry'=>utf8_decode($this->getdescountry()),
+			':desaddress'=>($this->getdesaddress()),
+			':descomplement'=>($this->getdescomplement()),
+			':descity'=>($this->getdescity()),
+			':desstate'=>($this->getdesstate()),
+			':descountry'=>($this->getdescountry()),
 			':deszipcode'=>$this->getdeszipcode(),
 			':desdistrict'=>$this->getdesdistrict()
 		]);
@@ -82,8 +82,8 @@ class Address extends Model {
 			$this->setData($results[0]);
 		}
 
-		echo count($results);
-		exit;
+		//echo count($results);
+		//exit;
 
 	}
 

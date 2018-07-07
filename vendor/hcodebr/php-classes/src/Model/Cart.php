@@ -51,14 +51,12 @@ class Cart extends Model {
 		}
 
 		return $cart;
-
 	}
 
 	public function setToSession()
 	{
 
 		$_SESSION[Cart::SESSION] = $this->getValues();
-
 	}
 
 	public function getFromSessionID()
@@ -74,7 +72,7 @@ class Cart extends Model {
 		{
 			$this->setData($results[0]);	
 		}
-
+		
 	}
 
 	public function get(int $idcart)
@@ -90,9 +88,6 @@ class Cart extends Model {
 		{
 			$this->setData($results[0]);	
 		}
-
-		
-
 	}
 
 	public function save()
@@ -109,7 +104,10 @@ class Cart extends Model {
 			':nrdays'=>$this->getnrdays()
 		]);
 
-		$this->setData($results[0]);
+		if (count($results) > 0)
+		{
+			$this->setData($results[0]);
+		}
 	}
 
 	public function addProduct(Product $product)
@@ -169,7 +167,6 @@ class Cart extends Model {
 		]);
 
 		return Product::checkList($rows);
-
 	}
 
 	public function getProductsTotals()
@@ -192,8 +189,6 @@ class Cart extends Model {
 		{
 			return [];
 		}
-		
-
 	}
 
 	public function setFreight($nrzipcode)
@@ -250,7 +245,6 @@ class Cart extends Model {
 			return $result;
 
 		}
-
 	}
 
 	public static function formatValueToDecimal($value):float
@@ -258,14 +252,12 @@ class Cart extends Model {
 
 		$value = str_replace('.', '', $value);
 		return str_replace(',', '.', $value);
-
 	}
 
 	public static function setMsgError($msg)
 	{
 
 		$_SESSION[Cart::SESSION_ERROR] = $msg;
-
 	}
 
 	public static function getMsgError()
@@ -276,14 +268,12 @@ class Cart extends Model {
 		Cart::clearMsgError();
 
 		return $msg;
-
 	}
 
 	public static function clearMsgError()
 	{
 
 		$_SESSION[Cart::SESSION_ERROR] = NULL;
-
 	}
 
 	public function updateFreight()
@@ -294,7 +284,6 @@ class Cart extends Model {
 			$this->setFreight($this->getdeszipcode());
 
 		}
-
 	}
 
 	public function getValues()
@@ -303,7 +292,6 @@ class Cart extends Model {
 		$this->getCalculateTotal();
 
 		return parent::getValues();
-
 	}
 
 	public function getCalculateTotal()
@@ -312,12 +300,9 @@ class Cart extends Model {
 		$this->updateFreight();
 
 		$totals = $this->getProductsTotals();
-//var_dump($totals['vlprice']);exit;
+
 		$this->setvlsubtotal($totals['vlprice']);
 		$this->setvltotal($totals['vlprice'] + $this->getvlfreight());
-
-
-
 	}
 
 } // Fim da Classe
