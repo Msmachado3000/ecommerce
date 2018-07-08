@@ -26,7 +26,6 @@ class User extends Model {
 		}
 
 		return $user;
-
 	}
 
 	public static function checkLogin($inadmin = true)
@@ -59,7 +58,6 @@ class User extends Model {
 			}
 
 		}
-
 	}
 
 	public static function login($login, $password)
@@ -94,7 +92,6 @@ class User extends Model {
 		} else {
 			throw new \Exception("Usuário inexistente ou senha inválida.");
 		}
-
 	}
 
 	public static function verifyLogin($inadmin = true)
@@ -110,14 +107,12 @@ class User extends Model {
 			exit;
 
 		}
-
 	}
 
 	public static function logout()
 	{
 
 		$_SESSION[User::SESSION] = NULL;
-
 	}
 
 	public static function listAll()
@@ -126,7 +121,6 @@ class User extends Model {
 		$sql = new Sql();
 
 		return $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) ORDER BY b.desperson");
-
 	}
 
 	public function save()
@@ -144,7 +138,6 @@ class User extends Model {
 		));
 
 		$this->setData($results[0]);
-
 	}
 
 	public function get($iduser)
@@ -162,7 +155,6 @@ class User extends Model {
 
 
 		$this->setData($data);
-
 	}
 
 	public function update()
@@ -181,7 +173,6 @@ class User extends Model {
 		));
 
 		$this->setData($results[0]);		
-
 	}
 
 	public function delete()
@@ -192,7 +183,6 @@ class User extends Model {
 		$sql->query("CALL sp_users_delete(:iduser)", array(
 			":iduser"=>$this->getiduser()
 		));
-
 	}
 
 	public static function getForgot($email, $inadmin = true)
@@ -269,7 +259,6 @@ class User extends Model {
 			}
 
 		}
-
 	}
 
 	public static function validForgotDecrypt($result)
@@ -302,7 +291,7 @@ class User extends Model {
 	    {
 	        return $results[0];
 	    }
-	 }
+	}
 
 	public static function setForgotUsed($idrecovery)
 	{
@@ -312,7 +301,6 @@ class User extends Model {
 		$sql->query("UPDATE tb_userspasswordsrecoveries SET dtrecovery = NOW() WHERE idrecovery = :idrecovery", array(
 			":idrecovery"=>$idrecovery
 		));
-
 	}
 
 	public function setPassword($password)
@@ -324,14 +312,12 @@ class User extends Model {
 			":password"=>$password,
 			":iduser"=>$this->getiduser()
 		));
-
 	}
 
 	public static function setError($msg)
 	{
 
 		$_SESSION[User::ERROR] = $msg;
-
 	}
 
 	public static function getError()
@@ -342,21 +328,18 @@ class User extends Model {
 		User::clearError();
 
 		return $msg;
-
 	}
 
 	public static function clearError()
 	{
 
 		$_SESSION[User::ERROR] = NULL;
-
 	}
 
 	public static function setSuccess($msg)
 	{
 
 		$_SESSION[User::SUCCESS] = $msg;
-
 	}
 
 	public static function getSuccess()
@@ -367,21 +350,18 @@ class User extends Model {
 		User::clearSuccess();
 
 		return $msg;
-
 	}
 
 	public static function clearSuccess()
 	{
 
 		$_SESSION[User::SUCCESS] = NULL;
-
 	}
 
 	public static function setErrorRegister($msg)
 	{
 
 		$_SESSION[User::ERROR_REGISTER] = $msg;
-
 	}
 
 	public static function getErrorRegister()
@@ -392,14 +372,12 @@ class User extends Model {
 		User::clearErrorRegister();
 
 		return $msg;
-
 	}
 
 	public static function clearErrorRegister()
 	{
 
 		$_SESSION[User::ERROR_REGISTER] = NULL;
-
 	}
 
 	public static function checkLoginExist($login)
@@ -412,7 +390,6 @@ class User extends Model {
 		]);
 
 		return (count($results) > 0);
-
 	}
 
 	public static function getPasswordHash($password)
@@ -421,6 +398,29 @@ class User extends Model {
 		return password_hash($password, PASSWORD_DEFAULT, [
 			'cost'=>12
 		]);
+	}
+
+	public function getOrders()
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+			SELECT *
+			FROM tb_orders a
+			INNER JOIN tb_ordersstatus b USING(idstatus)
+			INNER JOIN tb_carts c USING(idcart)
+			INNER JOIN tb_users d ON d.iduser = a.iduser
+			INNER JOIN tb_addresses e USING(idaddress)
+			INNER JOIN tb_persons f ON f.idperson = d.idperson
+			WHERE a.iduser = :iduser
+		", [
+			':iduser'=>$this->getiduser()
+		]);
+
+		if (count($results) > 0) {
+			return $results;
+		}
 
 	}
 
