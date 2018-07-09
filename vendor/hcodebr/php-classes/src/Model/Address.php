@@ -52,28 +52,16 @@ class Address extends Model {
 	{
 
 		$sql = new Sql();
-            $idaddress=(int)$this->getidaddress();
-			$idperson=$this->getidperson();
-			$desaddress=utf8_decode($this->getdesaddress());
-			$descomplement=utf8_decode($this->getdescomplement());
-			$descity=utf8_decode($this->getdescity());
-			$desstate=utf8_decode($this->getdesstate());
-			$descountry=utf8_decode($this->getdescountry());
-			$deszipcode=$this->getdeszipcode();
-			$desdistrict=$this->getdesdistrict();
-			
-			//echo "CALL sp_addresses_save(". $idaddress . ',' . $idperson . ',"' . $desaddress . '","' . $descomplement . '","' . $descity . '","' . $desstate . '","' . $descountry . '","' . $deszipcode . '","' . $desdistrict . '")';exit;
 
-		//$results = $sql->select("CALL sp_addresses_save(". $idaddress . ',' . $idperson . ',"' . $desaddress . '","' . $descomplement . '","' . $descity . '","' . $desstate . '","' . $descountry . '","' . $deszipcode . '","' . $desdistrict . '")');exit;
-
-		$results = $sql->select("CALL sp_addresses_save(:idaddress, :idperson, :desaddress, :descomplement, :descity, :desstate, :descountry, :deszipcode, :desdistrict);", [
-			':idaddress'=> $idaddress,
+		$results = $sql->select("CALL sp_addresses_save(:idaddress, :idperson, :desaddress, :desnumber, :descomplement, :descity, :desstate, :descountry, :deszipcode, :desdistrict);", [
+			':idaddress'=>$this->getidaddress(),
 			':idperson'=>$this->getidperson(),
-			':desaddress'=>($this->getdesaddress()),
-			':descomplement'=>($this->getdescomplement()),
-			':descity'=>($this->getdescity()),
-			':desstate'=>($this->getdesstate()),
-			':descountry'=>($this->getdescountry()),
+			':desaddress'=>$this->getdesaddress(),
+			':desnumber'=>$this->getdesnumber(),
+			':descomplement'=>$this->getdescomplement(),
+			':descity'=>$this->getdescity(),
+			':desstate'=>$this->getdesstate(),
+			':descountry'=>$this->getdescountry(),
 			':deszipcode'=>$this->getdeszipcode(),
 			':desdistrict'=>$this->getdesdistrict()
 		]);
